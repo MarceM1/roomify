@@ -35,9 +35,9 @@ export default function Home() {
           </div>
           <p>Introducing Roomify 2.0</p>
         </div>
-        <h1>Build beatiful spaces at the speed of thought with Rommify</h1>
+        <h1>Build beautiful  spaces at the speed of thought with Rommify</h1>
         <p className="subtitle">
-          Rommify is an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
+          Roomify is an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
         </p>
 
         {/* CTA */}
