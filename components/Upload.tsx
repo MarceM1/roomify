@@ -18,9 +18,23 @@ const Upload = ({ onComplete }: UploadProps) => {
         if (!isSignedIn || !files || files.length === 0) return;
 
         const selectedFile = files[0];
+        const allowedTypes = new Set(["image/jpeg", "image/png"]);
+        const maxFileSizeBytes = 50 * 1024 * 1024;
+
+        if (!allowedTypes.has(selectedFile.type) || selectedFile.size > maxFileSizeBytes) {
+            setFile(null);
+            setProgress(0);
+            return;
+        }
+
         setFile(selectedFile);
 
         const reader = new FileReader();
+
+        reader.onerror = ()=>{
+            setFile(null);
+            setProgress(0);
+        }
         reader.onload = () => {
             const base64 = reader.result as string;
             let currentProgress = 0;
@@ -60,7 +74,7 @@ const Upload = ({ onComplete }: UploadProps) => {
     return (
         <div className='upload'>
             {!file ? (
-                <div 
+                <div
                     className={`dropzone ${isDragging ? 'is-dragging' : ''}`}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}

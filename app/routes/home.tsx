@@ -35,9 +35,9 @@ export default function Home() {
           </div>
           <p>Introducing Roomify 2.0</p>
         </div>
-        <h1>Buil beatiful spaces at the speed of thought with Rommify</h1>
+        <h1>Build beatiful spaces at the speed of thought with Rommify</h1>
         <p className="subtitle">
-          Rommify us an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
+          Rommify is an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
         </p>
 
         {/* CTA */}
@@ -55,13 +55,13 @@ export default function Home() {
                 <Layers className="icon" />
               </div>
               <h3>Upload your floor plan</h3>
-              <p>Supports JPG, PNG, formats up to 10MB</p>
+              <p>Supports JPG, PNG, formats up to 50MB</p>
             </div>
 
             {/* Upload file */}
             <Upload onComplete={(base64) => {
-              console.log('Upload complete with base64:', base64)
-              handleUploadComplete(base64);
+              // console.log('Upload complete with base64:', base64)
+              void handleUploadComplete(base64);
             }} />
           </div>
         </div>
