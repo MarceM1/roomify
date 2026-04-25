@@ -25,7 +25,7 @@ const VisualizerId = () => {
       const result = await generate3DView({ sourceImage: initialImage });
       if (result.renderedImage) { setCurrentImage(result.renderedImage); }
     } catch (error) {
-      console.log("Error during generation:", error);
+      console.error("Error during generation:", error);
     } finally {
       setIsProcessing(false);
     };
