@@ -3,7 +3,7 @@ import { useLocation } from "react-router"
 const VisualizerId = () => {
   const location = useLocation();
 
-  const {initialImage, name}= location.state || null;
+  const { initialImage, name } = (location.state as VisualizerLocationState | null ) ?? {}
 
   return (
     <section>
@@ -12,7 +12,7 @@ const VisualizerId = () => {
         {initialImage && (
           <div className="image-container">
             <h2>Source Image</h2>
-            <img src={initialImage} alt={name} />
+            <img src={initialImage} alt={name || 'Project Source Image'} />
           </div>
         )}
       </div>

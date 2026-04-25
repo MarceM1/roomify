@@ -5,7 +5,7 @@ import Button from "../../components/ui/Button";
 import Upload from "../../components/Upload";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { createProject } from "../../lib/puter.action";
+import { createProject } from "../../lib/puter.actions";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -37,7 +37,7 @@ export default function Home() {
       return false
     };
 
-    setProjects((prev) => [newItem, ...prev]);
+    setProjects((prev) => [saved, ...prev]);
 
     navigate(`/visualizer/${newId}`, {
       state: {
@@ -88,10 +88,7 @@ export default function Home() {
             </div>
 
             {/* Upload file */}
-            <Upload onComplete={(base64) => {
-              // console.log('Upload complete with base64:', base64)
-               handleUploadComplete(base64);
-            }} />
+            <Upload onComplete={(base64) => handleUploadComplete(base64)} />
           </div>
         </div>
       </section>
@@ -107,7 +104,7 @@ export default function Home() {
           </div>
           <div className="projects-grid">
             {projects.map(({id, name, renderedImage, sourceImage, timestamp}) => (
-              <div className="project-card group">
+              <div key={id} className="project-card group">
                 <div className="preview">
                   <img src={renderedImage || sourceImage} alt="Project preview" />
                   <div className="badge">
