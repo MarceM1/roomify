@@ -52,7 +52,7 @@ const VisualizerId = () => {
           isPublic: item.isPublic ?? false,
         }
 
-        console.log("Attempting to save project with updated item:", updatedItem);
+       // console.log("Attempting to save project with updated item:", updatedItem);
         const saved = await createProject({ item: updatedItem, visibility: "private" })
 
         if (saved) {
