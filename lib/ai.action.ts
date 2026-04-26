@@ -32,15 +32,18 @@ export const generate3DView = async ({sourceImage}: Generate3DViewParams) => {
     if(!mimeType || !base64Data) throw new Error("Invalid source data");
 
     const response = await puter.ai.txt2img(ROOMIFY_RENDER_PROMPT, {
-        model: 'gemini-2.5-flash-image',
+        model: 'gemini-2.5-flash-image-preview',
         input_image: base64Data,
         input_image_mime_type: mimeType,
         ratio:{w:1024, h:1024},
     });
+    // console.log('Raw response from AI:', response);
 
     const rawImageURL = (response && typeof response === 'object' && 'src' in response && typeof response.src === 'string')
         ? response.src
         : null;
+
+        // console.log('Extracted image URL from AI response:', rawImageURL);
 
     if(!rawImageURL) return {
         renderedImage: null,
@@ -51,6 +54,8 @@ export const generate3DView = async ({sourceImage}: Generate3DViewParams) => {
         ? rawImageURL
         : await fetchAsDataURL(rawImageURL)
     ;
+
+
 
     return {
         renderedImage,
